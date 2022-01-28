@@ -1,4 +1,3 @@
-from xmlrpc.client import boolean
 import pyautogui as auto
 import time
 
@@ -160,7 +159,9 @@ def moveToFarm(farm):
         # Variantes fresnos
         ASHTREE14_v1 = auto.locateOnScreen('assets/fresno/mapas/14/v1.png',  confidence=0.7)
         ASHTREE14_v2  = auto.locateOnScreen('assets/fresno/mapas/14/v2.png',  confidence=0.9)
-   
+        
+        time.sleep(1.5)
+
         # Fresno MOOB
         MOOB_ASHTREE1 = auto.locateOnScreen('assets/fresno/moob/moob1.png', confidence=0.8)
         MOOB_ASHTREE2 = auto.locateOnScreen('assets/fresno/moob/moob2.png', confidence=0.9)
