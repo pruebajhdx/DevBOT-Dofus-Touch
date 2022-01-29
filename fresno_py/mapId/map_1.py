@@ -7,7 +7,15 @@ from movimiento import clickPosition, clickToCell
 def map_1():
 
     loop = True
-    uniqueClick = 0
+     # Fresno MOOB
+     
+    MOOB_ASHTREE1 = auto.locateOnScreen(
+        './assets/fresno/moob/moob1.png', confidence=0.8)
+    MOOB_ASHTREE2 = auto.locateOnScreen(
+        './assets/fresno/moob/moob2.png', confidence=0.9)
+    
+    if MOOB_ASHTREE1 or MOOB_ASHTREE2:
+        loop = False
     
     while loop:
 
@@ -41,7 +49,7 @@ def map_1():
             './assets/fresno/mapas/1/v2.png',  confidence=0.9)
         ASHTREE1_v3 = auto.locateOnScreen(
             './assets/fresno/mapas/1/v3.png',  confidence=0.9)
-
+ 
 
         if ASHTREE1_1 or ASHTREE1_2:
             clickPosition(ASHTREE1_1 or ASHTREE1_2)
@@ -68,5 +76,5 @@ def map_1():
             clickPosition(ASHTREE1_v3)
 
         else:
-            clickToCell(163, 514)
+            clickToCell(163, 514, 1, 3)
             loop = False

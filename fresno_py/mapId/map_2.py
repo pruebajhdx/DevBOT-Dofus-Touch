@@ -14,7 +14,15 @@ def map_2():
         IDENTIFIED = auto.locateOnScreen(
             './assets/fresno/mapas/2/pos.png',  confidence=0.9)
 
-        if IDENTIFIED:
+        MOOB_ASHTREE1 = auto.locateOnScreen(
+            './assets/fresno/moob/moob1.png', confidence=0.8)
+        MOOB_ASHTREE2 = auto.locateOnScreen(
+            './assets/fresno/moob/moob2.png', confidence=0.9)
+        
+        if MOOB_ASHTREE1 or MOOB_ASHTREE2:
+            loop = False
+
+        elif IDENTIFIED:
 
             ASHTREE2_1 = auto.locateOnScreen(
                 './assets/fresno/mapas/2/1.png',  confidence=0.9)
@@ -29,7 +37,6 @@ def map_2():
             ASHTREE2_v2 = auto.locateOnScreen(
                 './assets/fresno/mapas/2/v2.png',  confidence=0.9)
 
-
             if ASHTREE2_1 or ASHTREE2_2:
                 clickPosition(ASHTREE2_1 or ASHTREE2_2)
                 
@@ -38,7 +45,7 @@ def map_2():
 
             elif ASHTREE2_v1 or ASHTREE2_v2:
                 clickPosition(ASHTREE2_v1 or ASHTREE2_v2)
-            
+                
             else:
-                clickToCell(760, 1065)
+                clickToCell(760, 1065, 1, 3)
                 loop = False

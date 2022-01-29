@@ -6,6 +6,7 @@ from fresno_py.mapId.map_2 import map_2
 from fresno_py.mapId.map_3 import map_3
 from fresno_py.mapId.map_4 import map_4
 from fresno_py.mapId.map_14 import map_14
+from fresno_py.mapId.map_5 import map_5
 from fresno_py.mapId.map_6 import map_6
 from fresno_py.mapId.map_7 import map_7
 
@@ -34,8 +35,10 @@ def moveToMap(count):
         moveToFarm(move, count)
     elif count == 4:
         map_4()
+        moveToFarm(move, count)
     elif count == 5:
-        clickToCell(165, 584)
+        map_5()
+        moveToFarm(move, count)
     elif count == 6:
         map_6()
         moveToFarm(move, count)
@@ -43,40 +46,40 @@ def moveToMap(count):
         map_7()
         moveToFarm(move, count)
     elif count == 8:
-        clickToCell(1582, 498)
+        clickToCell(1582, 498, 1, 3)
     elif count == 9:
-        clickToCell(1593, 501)
+        clickToCell(1593, 501, 1, 3)
     elif count == 10:
-        clickToCell(1591, 405)
+        clickToCell(1591, 405, 1, 3)
     elif count == 11:
-        clickToCell(1587, 538)
+        clickToCell(1587, 538, 1, 3)
     elif count == 12:
-        clickToCell(1598, 452)
+        clickToCell(1598, 452, 1, 3)
     elif count == 13:
-        clickToCell(1163, 49)
+        clickToCell(1163, 49, 1, 3)
     elif count == 14:
         map_14()
 
 
 def moveToDead(mapId):
     if mapId == 1:
-        clickToCell(1670, 668)
+        clickToCell(1670, 668, 1, 0.1)
     elif mapId == 2:
-        clickToCell(1669, 751)
+        clickToCell(1669, 751, 1, 0.1)
     elif mapId == 3:
-        clickToCell(1666, 650)
+        clickToCell(1666, 650, 1, 0.1)
     elif mapId == 4:
-        clickToCell(1672, 498)
+        clickToCell(1672, 498, 1, 0.1)
     elif mapId == 5:
-        clickToCell(975, 38)
+        clickToCell(975, 38, 1, 0.1)
     elif mapId == 6:
-        clickToCell(1130, 48)
+        clickToCell(1130, 48, 1, 0.1)
     elif mapId == 7:
-        clickToCell(955, 37)
+        clickToCell(955, 37, 1, 0.1)
     elif mapId == 8:
-        clickToCell(655, 38)
+        clickToCell(655, 38, 1, 0.1)
     elif mapId == 9:
-        clickToCell(155, 868)
+        clickToCell(155, 868, 1, 0.1)
 
 
 def toDead(death):
