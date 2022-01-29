@@ -1,4 +1,5 @@
-from ashtree import clickPosition, clickToCell
+from fresno import clickPosition, clickToCell
+
 import pyautogui as auto
 import time
 

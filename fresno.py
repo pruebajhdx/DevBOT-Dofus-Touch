@@ -1,35 +1,47 @@
 import time
 import pyautogui as auto
 
+from fresno_py.mapId.map_1 import map_1
+from fresno_py.mapId.map_2 import map_2
+from fresno_py.mapId.map_3 import map_3
+from fresno_py.mapId.map_4 import map_4
+from fresno_py.mapId.map_14 import map_14
+from fresno_py.mapId.map_6 import map_6
+from fresno_py.mapId.map_7 import map_7
 
-
-from fresno.mapId.map_3 import map_3
-from fresno.mapId.map_14 import map_14
 from movimiento import clickPosition, clickToCell
 
 
 # Variables
-count = 0
-mapIdDeath = 0
+# mapIdDeath = 0
+
 death = False
 farm = True
 
 
 def moveToMap(count):
+
+    move = True
+
     if count == 1:
-        clickToCell(163, 514)
+        map_1()
+        moveToFarm(move, count)
     elif count == 2:
-        clickToCell(748, 1073)
+        map_2()
+        moveToFarm(move, count)
     elif count == 3:
-        map_3()  
+        map_3()
+        moveToFarm(move, count)
     elif count == 4:
-        clickToCell(173, 537)
+        map_4()
     elif count == 5:
         clickToCell(165, 584)
     elif count == 6:
-        clickToCell(163, 557)
+        map_6()
+        moveToFarm(move, count)
     elif count == 7:
-        clickToCell(1086, 1074)
+        map_7()
+        moveToFarm(move, count)
     elif count == 8:
         clickToCell(1582, 498)
     elif count == 9:
@@ -44,6 +56,7 @@ def moveToMap(count):
         clickToCell(1163, 49)
     elif count == 14:
         map_14()
+
 
 def moveToDead(mapId):
     if mapId == 1:
@@ -70,15 +83,21 @@ def toDead(death):
 
     mapNext = 0
     uniqueClick = 0
-    
+
     while death:
 
-        LEAVE = auto.locateOnScreen('./assets/abandono/abandonar.png', confidence=0.9)
-        LEAVE_YES = auto.locateOnScreen('./assets/abandono/abandonarsi.png', confidence=0.9)
-        MSG_OK = auto.locateOnScreen('./assets/abandono/ok.png', confidence=0.8)
-        INTERFACE_X = auto.locateOnScreen('./assets/abandono/x.png', confidence=0.8)
-        FENIX = auto.locateOnScreen('./assets/fresno/fenix/fenix.png', confidence=0.8)
-        POTION = auto.locateOnScreen('./assets/otros/pocima.png', confidence=0.7)
+        LEAVE = auto.locateOnScreen(
+            './assets/abandono/abandonar.png', confidence=0.9)
+        LEAVE_YES = auto.locateOnScreen(
+            './assets/abandono/abandonarsi.png', confidence=0.9)
+        MSG_OK = auto.locateOnScreen(
+            './assets/abandono/ok.png', confidence=0.8)
+        INTERFACE_X = auto.locateOnScreen(
+            './assets/abandono/x.png', confidence=0.8)
+        FENIX = auto.locateOnScreen(
+            './assets/fresno/fenix/fenix.png', confidence=0.8)
+        POTION = auto.locateOnScreen(
+            './assets/otros/pocima.png', confidence=0.7)
 
         if LEAVE and uniqueClick <= 1:
             uniqueClick += 1
@@ -94,7 +113,7 @@ def toDead(death):
                 auto.doubleClick(POTION, duration=0.1)
                 death = False
                 farm = True
-                moveToFarm(farm)
+                moveToFarm(farm, 0)
         else:
             mapNext += 1
             print('ghostID', mapNext)
@@ -102,20 +121,21 @@ def toDead(death):
             time.sleep(5)
 
 
-def moveToFarm(farm):
-    count = 0
-    uniqueClick = 0
+def moveToFarm(farm, count):
 
     while farm:
-        #MapaId 13
+        # MapaId 13
 
         # Fresno MOOB
-        MOOB_ASHTREE1 = auto.locateOnScreen('./assets/fresno/moob/moob1.png', confidence=0.8)
-        MOOB_ASHTREE2 = auto.locateOnScreen('./assets/fresno/moob/moob2.png', confidence=0.9)
+        MOOB_ASHTREE1 = auto.locateOnScreen(
+            './assets/fresno/moob/moob1.png', confidence=0.8)
+        MOOB_ASHTREE2 = auto.locateOnScreen(
+            './assets/fresno/moob/moob2.png', confidence=0.9)
 
         # Inventario
 
-        INVENTARY_FULL = auto.locateOnScreen("./assets/otros/inventario.png", confidence=0.9)
+        INVENTARY_FULL = auto.locateOnScreen(
+            "./assets/otros/inventario.png", confidence=0.9)
 
         if MOOB_ASHTREE1 or MOOB_ASHTREE2:
             farm = False
@@ -126,19 +146,20 @@ def moveToFarm(farm):
             auto.click(INVENTARY_FULL, duration=0.1, clicks=0)
             auto.alert(text='Inventario lleno', title='Alerta', button='OK')
             break
-            
-        
+
         else:
             count = count + 1
             if count >= 15:
                 count = 0
             else:
                 print('Farm mapID: ', count)
-                moveToMap(14)
-        #print(position)
+                moveToMap(count)
+                farm = False
+        # print(position)
 
 
 if __name__ == "__main__":
-    moveToFarm(farm)
-    auto.FAILSAFE
-    #print(auto.getAllWindows())
+    count = 0
+    moveToFarm(farm, count)
+    # auto.FAILSAFE
+    # print(auto.getAllWindows())
