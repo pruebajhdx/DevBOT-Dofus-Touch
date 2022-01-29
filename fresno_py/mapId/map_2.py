@@ -5,7 +5,7 @@ from movimiento import clickPosition, clickToCell
 
 
 
-def map_2():
+def map_2(timeClick):
 
     loop = True
     
@@ -36,6 +36,11 @@ def map_2():
                 './assets/fresno/mapas/2/v1.png',  confidence=0.9)
             ASHTREE2_v2 = auto.locateOnScreen(
                 './assets/fresno/mapas/2/v2.png',  confidence=0.9)
+            ASHTREE2_v3 = auto.locateOnScreen(
+                './assets/fresno/mapas/2/v3.png',  confidence=0.9)
+
+            INVENTARY_FULL = auto.locateOnScreen(
+            "./assets/otros/inventario.png", confidence=0.9)    
 
             if ASHTREE2_1 or ASHTREE2_2:
                 clickPosition(ASHTREE2_1 or ASHTREE2_2)
@@ -45,7 +50,15 @@ def map_2():
 
             elif ASHTREE2_v1 or ASHTREE2_v2:
                 clickPosition(ASHTREE2_v1 or ASHTREE2_v2)
+
+            elif ASHTREE2_v3:
+                clickPosition(ASHTREE2_v3)
+            
+            elif INVENTARY_FULL:
+                auto.click(INVENTARY_FULL, duration=0.1, clicks=0)
+                auto.alert(text='Inventario lleno', title='Alerta', button='OK')
+                break
                 
             else:
-                clickToCell(760, 1065, 1, 3)
+                clickToCell(760, 1065, 1, timeClick)
                 loop = False

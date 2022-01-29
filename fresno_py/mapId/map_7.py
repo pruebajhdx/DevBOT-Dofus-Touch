@@ -3,7 +3,7 @@ import pyautogui as auto
 from movimiento import clickPosition, clickToCell
 
 
-def map_7():
+def map_7(timeClick):
 
     loop = True
 
@@ -48,6 +48,11 @@ def map_7():
                 './assets/fresno/mapas/7/12.png',  confidence=0.9)
             ASHTREE7_v1 = auto.locateOnScreen(
                 './assets/fresno/mapas/7/v1.png',  confidence=0.9)
+            ASHTREE7_v2 = auto.locateOnScreen(
+                './assets/fresno/mapas/7/v2.png',  confidence=0.9)
+            
+            INVENTARY_FULL = auto.locateOnScreen(
+                "./assets/otros/inventario.png", confidence=0.9)
 
             if ASHTREE7_1 or ASHTREE7_2:
                 clickPosition(ASHTREE7_1 or ASHTREE7_2)
@@ -67,9 +72,14 @@ def map_7():
             elif ASHTREE7_11 or ASHTREE7_12:
                 clickPosition(ASHTREE7_11 or ASHTREE7_12)
             
-            elif ASHTREE7_v1:
-                clickPosition(ASHTREE7_v1)
-
+            elif ASHTREE7_v1 or ASHTREE7_v2:
+                clickPosition(ASHTREE7_v1 or ASHTREE7_v2)
+            
+            elif INVENTARY_FULL:
+                auto.click(INVENTARY_FULL, duration=0.1, clicks=0)
+                auto.alert(text='Inventario lleno', title='Alerta', button='OK')
+                break
+            
             else:
-                clickToCell(1086, 1074, 1, 3)
+                clickToCell(1086, 1074, 1, timeClick)
                 loop = False

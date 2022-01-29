@@ -5,12 +5,10 @@ from movimiento import clickPosition, clickToCell
 
 
 
-def map_2():
+def map_8(timeClick):
 
     loop = True
 
-    
-    
     while loop:
 
         IDENTIFIED = auto.locateOnScreen(
@@ -34,10 +32,10 @@ def map_2():
                 './assets/fresno/mapas/8/3.png',  confidence=0.9)
             ASHTREE8_4 = auto.locateOnScreen(
                 './assets/fresno/mapas/8/4.png',  confidence=0.9)
-            ASHTREE8_v1 = auto.locateOnScreen(
-                './assets/fresno/mapas/8/v1.png',  confidence=0.9)
-            ASHTREE8_v2 = auto.locateOnScreen(
-                './assets/fresno/mapas/8/v2.png',  confidence=0.9)
+            
+            INVENTARY_FULL = auto.locateOnScreen(
+                "./assets/otros/inventario.png", confidence=0.9)
+
 
             if ASHTREE8_1 or ASHTREE8_2:
                 clickPosition(ASHTREE8_1 or ASHTREE8_2)
@@ -45,9 +43,11 @@ def map_2():
             elif ASHTREE8_3 or ASHTREE8_4:
                 clickPosition(ASHTREE8_3 or ASHTREE8_4)
 
-            elif ASHTREE8_v1 or ASHTREE8_v2:
-                clickPosition(ASHTREE8_v1 or ASHTREE8_v2)
-            
+            elif INVENTARY_FULL:
+                auto.click(INVENTARY_FULL, duration=0.1, clicks=0)
+                auto.alert(text='Inventario lleno', title='Alerta', button='OK')
+                break
+                
             else:
-                clickToCell(1582, 498, 1, 3)
+                clickToCell(1582, 498, 1, timeClick)
                 loop = False
