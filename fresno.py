@@ -1,5 +1,7 @@
+from re import I
 import time
 import pyautogui as auto
+from bcolor import bcolors
 
 from fresno_py.mapId.map_1 import map_1
 from fresno_py.mapId.map_2 import map_2
@@ -29,7 +31,7 @@ farm = True
 def moveToMap(count):
 
     move = True
-    timeClick = 2.5
+    timeClick = 1
 
     if count == 1:
         map_1(timeClick)
@@ -140,40 +142,40 @@ def toDead(death):
 
 def moveToFarm(farm, count):
 
+    cycle = 0
+
     while farm:
-        
+
         MOOB_ASHTREE1 = auto.locateOnScreen(
             './assets/fresno/moob/moob1.png', confidence=0.8)
         MOOB_ASHTREE2 = auto.locateOnScreen(
             './assets/fresno/moob/moob2.png', confidence=0.9)
-        
+
         if MOOB_ASHTREE1 or MOOB_ASHTREE2:
             farm = False
             death = True
             toDead(death)
 
         count = count + 1
-        
+
         if count >= 15:
             count = 0
+            cycle += 1
         else:
-            print('Farm mapID Rincón del Jalato: ', count)
+            print(bcolors.OK + 'Farmeando mapID Rincón del Jalato: ' +
+                  bcolors.RESET, bcolors.COUNT + str(count) + bcolors.RESET)
+            print(bcolors.WHITE_N +
+                  'Capturando objetos interactivos...' + bcolors.RESET)
             moveToMap(count)
             farm = False
-       
+
+        print('Rondas terminadas: ', cycle)
 
 
 if __name__ == "__main__":
     count = 0
-    crono = 0
-
-    print('Botus Dofus Touch')
+    print(bcolors.YELLOW_N + 'Botus Dofus Touch' + bcolors.RESET)
+    print(bcolors.YELLOW_N + 'Analizando mapas ...' + bcolors.RESET)
     moveToFarm(farm, count)
-    
-    for i in range(1, 3, 1):
-        time.sleep(1)
-        if farm == True:
-            crono += 1
-    print('Tiempo concurrido: ', crono, '::', crono/60)
     # auto.FAILSAFEc
     # print(auto.getAllWindows())
